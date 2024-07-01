@@ -5,13 +5,21 @@
     <title>CSV Download</title>
     <script>
       function downloadCSV() {
-        alert("CSV file is generated and downloaded");
-        window.location.href = "/construct_csv_from_model/";
+        alert("CSV file is being generated and downloaded");
+        setTimeout(function () {
+          window.location.href = "/construct_csv_from_model/?download=true";
+        }, 100); // Delay to ensure alert is shown
+      }
+      function downloadPDF() {
+        alert("PDF file is being generated and downloaded");
+        setTimeout(function () {
+          window.location.href = "/pdf/";
+        }, 100); // Delay to ensure alert is shown
       }
     </script>
   </head>
   <body>
     <button onclick="downloadCSV()">Download CSV</button>
+    <button onclick="downloadPDF()">Download PDF</button>
   </body>
 </html>
-
