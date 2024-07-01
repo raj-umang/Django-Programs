@@ -6,7 +6,7 @@ import csv
 
 # Create your views here.
 def construct_csv_from_model(request):
-    if 'download' in request.GET:
+    # if 'download' in request.GET:
         courses = Course.objects.all()
         response = HttpResponse(content_type='text/csv')
         response['Content-Disposition'] = 'attachment; filename="course_data.csv"'
@@ -19,13 +19,14 @@ def construct_csv_from_model(request):
         
         return response
     
-    return render(request, 'csv.html')
+    # return render(request, 'csv.html')
 
 def construct_pdf_from_model(request): 
     courses=Course.objects.all()
     response=HttpResponse(content_type="application/pdf")
     response["Content-Disposition"] = ' attachment; filename="courses_data.pdf" '
     c=canvas.Canvas(response)
+    c.drawString(70, 800, "Hello 6th sem students")
     c.drawString(70,720,"Course Name")
     c.drawString(170,720,"Course Code")
     c.drawString(270,720,"Credits") 
