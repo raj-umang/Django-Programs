@@ -1,0 +1,33 @@
+{% load static %}
+<html>
+    <body>
+        <form method="post">
+            Courses
+            {% csrf_token %}
+             <select name="cname" id="cname">
+                {% for course in courses  %}
+                    <option value="{{course.id}}">{{course.course_name}}</option>
+                {% endfor %}
+            </select> <br>
+            <input type="button" value="Search" id="serbtn">
+            <span id="result"></span>
+        </form>
+    </body>
+    <script src="{% static "jquery.min.js" %}"></script>
+    <script>
+        $(document).ready(function(){
+            $("#serbtn").click(function(){
+            var cname = $("#cname").val();
+            $.ajax({
+                url: '/course_search_ajax/',
+                type: 'POST',
+                data: {cname: cname, csrfmiddlewaretoken: "{{csrf_token}}" },
+                success: function(response) {
+                    $("#result").html(response);
+                }
+            });
+        });
+        });
+        
+    </script>
+</html>
