@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluate Expression</title>
+    {% load static %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Evaluate Arithmetic Expression</h1>
+    <form id="expression-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Evaluate</button>
+    </form>
+    <p id="result"></p>
+
+    <script>
+        $(document).ready(function() {
+            $('#expression-form').on('submit', function(event) {
+                event.preventDefault();  // Prevent the default form submission
+                $.ajax({
+                    url: '{% url "evaluate_expression" %}',  // Make sure the URL is correct
+                    type: 'POST',
+                    data: {
+                        'expression': $('#id_expression').val(),
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(data) {
+                        $('#result').html('Result: ' + data.result);
+                    },
+                    error: function(xhr, errmsg, err) {
+                        $('#result').html('Error: ' + errmsg);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
