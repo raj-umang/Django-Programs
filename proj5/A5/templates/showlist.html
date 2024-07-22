@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>List of Items</title>
+  </head>
+  <style type="text/css">
+    #i1 {
+      background-color: purple;
+      color: brown;
+      display: table;
+    }
+    #i2 {
+      background-color: green;
+      color: black;
+    }
+  </style>
+  <body>
+    <h1 id="i1">Unordered List of Fruits</h1>
+    <ul>
+      {% for f in Fruits %}
+      <li>{{f}}</li>
+      {% endfor %}
+    </ul>
+
+    <h1 id="i2">Ordered List of Students</h1>
+    <ol>
+      {% for s in Students %}
+      <li>{{s}}</li>
+      {% endfor %}
+    </ol>
+  </body>
+</html>
