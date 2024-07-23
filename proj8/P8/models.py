@@ -1,13 +1,6 @@
 from django.db import models
-from django.forms import ModelForm
 
 # Create your models here.
-class Meeting(models.Model):
-    meeting_code = models.CharField(max_length=100)
-    meeting_dt = models.DateField(auto_now_add = True)
-    meeting_subject = models.CharField(max_length=100)
-    meeting_up=models.IntegerField()
-
 class Course(models.Model):
     course_code=models.CharField(max_length=40)
     course_name=models.CharField(max_length=100)
