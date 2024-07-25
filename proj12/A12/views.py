@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from A12.models import Student, Course
+from A12.models import Student, Course, MyModel
+import csv
+
 
 # Create your views here.
 
@@ -35,3 +37,16 @@ def course_search_ajax(request):
     else:
         courses=Course.objects.all()
         return render(request,"course_search.html",{ "courses" :courses})
+
+def export_csv(request): 
+    # Create the HTTP response with CSV content type 
+    response = HttpResponse(content_type='text/csv') 
+    response['Content-Disposition'] = 'attachment; filename="data.csv"' 
+    # Create a CSV writer 
+    writer = csv.writer(response)
+    # Write the header row 
+    writer.writerow(['Field1', 'Field2']) 
+    # Write data rows 
+    for obj in MyModel.objects.all(): 
+        writer.writerow([obj.field1, obj.field2]) 
+    return response 

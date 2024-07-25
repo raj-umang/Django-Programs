@@ -17,3 +17,7 @@ class Student(models.Model):
 
     def __str__(self):
         return self.student_name + "(" + self.student_usn + ")"
+    
+class MyModel(models.Model): 
+    field1 = models.CharField(max_length=100) 
+    field2 = models.IntegerField()

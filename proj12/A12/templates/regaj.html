@@ -4,20 +4,20 @@
         <form method="post">
             {% csrf_token %}
             Student Name: 
-            <select name="sname" id="sname">
+            <select  id="sname">
                 {% for student in students  %}
                     <option value="{{student.id}}">{{student.student_name}}</option>
                 {% endfor %}
-            </select> <br>
+            </select> <br> <br>
             Course Name: 
             <select name="cname" id="cname">
                 {% for course in courses  %}
                     <option value="{{course.id}}">{{course.course_name}}</option>
                 {% endfor %}
-            </select> <br>
+            </select> <br> <br>
             
-            <span id="ans"></span>
             <input type="button" value="Enroll" id="ebtn">
+            <span id="ans"></span>
         </form>
         <script src="{% static "jquery.min.js" %}"></script>
         <script>
